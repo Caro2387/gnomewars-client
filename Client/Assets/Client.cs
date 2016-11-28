@@ -19,7 +19,7 @@ public class Client : MonoBehaviour {
     {
         static void Main(string[] args)
         {
-            Gamepiece = GameObject.Find("GamePiece");
+            //Gamepiece = GameObject.Find("GamePiece");
 
             try
             {

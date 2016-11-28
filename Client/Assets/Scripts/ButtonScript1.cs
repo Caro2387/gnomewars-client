@@ -5,7 +5,7 @@ using System.Collections;
 public class ButtonScript1 : MonoBehaviour {
 
 	// Use this for initialization
-	void ChangeMenu () {
+	public void ChangeMenu () {
 		SceneManager.LoadScene ("GameBoard"); 
 
 	}

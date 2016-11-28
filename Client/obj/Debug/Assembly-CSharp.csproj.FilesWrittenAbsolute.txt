@@ -12,3 +12,7 @@
 /Users/tildehojgardjensen/gnomewars-client/Client/Temp/bin/Debug/Unity.CecilTools.dll
 /Users/tildehojgardjensen/gnomewars-client/Client/Temp/bin/Debug/Mono.Cecil.Pdb.dll
 /Users/tildehojgardjensen/gnomewars-client/Client/Temp/bin/Debug/Mono.Cecil.Mdb.dll
+/Users/tildehojgardjensen/gnomewars-client/Client/Temp/bin/Debug/Assembly-CSharp.dll.mdb
+/Users/tildehojgardjensen/gnomewars-client/Client/Temp/bin/Debug/Assembly-CSharp.dll
+/Users/tildehojgardjensen/gnomewars-client/Client/obj/Debug/Assembly-CSharp.dll
+/Users/tildehojgardjensen/gnomewars-client/Client/obj/Debug/Assembly-CSharp.dll.mdb

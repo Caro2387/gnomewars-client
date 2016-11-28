@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 
 public class Client : MonoBehaviour {
+ 
 
     public void RandomDiceRoll()
     {
@@ -18,6 +19,8 @@ public class Client : MonoBehaviour {
     {
         static void Main(string[] args)
         {
+            Gamepiece = GameObject.Find("GamePiece");
+
             try
             {
                 Console.WriteLine("Starting echo client...");

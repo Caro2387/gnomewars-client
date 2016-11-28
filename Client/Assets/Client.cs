@@ -7,16 +7,11 @@ using System.Net.Sockets;
 
 public class Client : MonoBehaviour {
 
-    class Dice
+    public void RandomDiceRoll()
     {
-        int DiceRoll()
-        {
-            int result;
-            Random rnd = new Random();
+        int DiceRoll = 0;
+        DiceRoll = UnityEngine.Random.Range(1, 6);
 
-            result = rnd.Next(1, 6);
-            return result;
-        }
     }
 
     class TcpEchoClient

@@ -21,87 +21,58 @@ public class Client : MonoBehaviour
     //GameObject players 
     public GameObject enemy;
 
+    //TCP Client 
+    static void Connect(String server, string message)
+    {
+        try
+        {
+            Int32 port = 1615;
+            TcpClient client = new TcpClient(server, port);
 
-    //The client server 
-    static int localPort;
+            //Translating the passed message into ASCII and storing it in a byte array
+            //Should be made so it takes all the other information instead of only a string
+            Byte[] data = System.Text.Encoding.ASCII.GetBytes(message);
 
-    public int IP;
-    public int port;
+            //Get a client stream for reading and writing
+            NetworkStream stream = client.GetStream();
 
-    IPEndPoint remoteEndPoint;
-    TcpClient client;
+            stream.Write(data, 0, data.Length);
+            Console.WriteLine("sent: {0}", message);
+
+            //Getting response from Tcp Server
+            //Buffer to store the response bytes from the Tcp Server
+            data = new Byte[256];
+
+            //string to store the response ASCII representation
+            String responseData = String.Empty;
+
+            //Reading the first batch
+            Int32 bytes = stream.Read(data, 0, data.Length);
+            responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+            Console.WriteLine("received: {0}", responseData);
+        }
+        catch (ArgumentNullException e)
+        {
+            Console.WriteLine("ArgumentNullException: {0}", e);
+        }
+        catch (SocketException e)
+        {
+            Console.WriteLine("SocketException: {0}", e);
+            throw;
+        }
+    }
 
     private static void Main()
     {
-        Client sendObj = new Client();
-        sendObj.initialize();
 
     }
 
     void start()
     {
-        initialize();
-
         //Making multiple gameobjects, fill out so it is for each of the connected players 
         for (int i = 0; i < 3; i++)
         {
-            instantiate(player);
-        }
-    }
-
-    public void initialize()
-    {
-        Console.WriteLine("Client.intit()");
-
-        //Should be change 
-        IP = "127.0.0.1";
-        port = 8051;
-
-        remoteEndPoint = new IPEndPoint(IPAddress.Parse(IP), port);
-        client = new TcpClient();
-
-        Console.WriteLine("sending to " + IP + " : " + port);
-        Console.WriteLine("Testing: nc -lu " + IP + " : " + port);
-    }
-
-    public void inputFromConsole()
-    {
-        try
-        {
-            string text;
-            do
-            {
-                text = Console.ReadLine();
-                if (text != "")
-                {
-                    byte[] data = Encoding.UTF8.GetBytes(text);
-
-                    client.Send(data, data.Length, remoteEndPoint);
-                }
-            } while (text != "");
-        }
-        catch (Exception err)
-        {
-            Console.WriteLine(err.ToString());
-            throw;
-        }
-    }
-
-    //SendData
-    private void sendString(string message)
-    {
-        try
-        {
-            //if (message != " ")
-
-            byte[] data = Encoding.UTF8.GetBytes(message);
-
-            client.Send(data, data.Length, remoteEndPoint);
-        }
-        catch (Exception err)
-        {
-            Console.WriteLine(err.ToString());
-            throw;
+            //instantiate(player);
         }
     }
 }

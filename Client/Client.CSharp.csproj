@@ -66,8 +66,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Client.cs" />
-    <Compile Include="Assets\GamePiece.cs" />
+    <Compile Include="Assets\Scripts\ButtonScript1.cs" />
+    <Compile Include="Assets\Scripts\Client.cs" />
+    <Compile Include="Assets\Scripts\GamePiece.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

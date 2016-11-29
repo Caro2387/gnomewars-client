@@ -18,6 +18,9 @@ public class Client : MonoBehaviour
 
     }
 
+    //GameObject players 
+    public GameObject enemy;
+
 
     //The client server 
     static int localPort;
@@ -38,6 +41,12 @@ public class Client : MonoBehaviour
     void start()
     {
         initialize();
+
+        //Making multiple gameobjects, fill out so it is for each of the connected players 
+        for (int i = 0; i < 3; i++)
+        {
+            instantiate(player);
+        }
     }
 
     public void initialize()

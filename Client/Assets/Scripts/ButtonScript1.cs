@@ -8,6 +8,12 @@ public class ButtonScript1 : MonoBehaviour {
 	public void ChangeMenu () {
 		SceneManager.LoadScene ("GameBoard"); 
 
+	} 
+
+	public void quitApp () {
+
+		Application.Quit (); 
+
 	}
 
 }

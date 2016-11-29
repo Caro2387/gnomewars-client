@@ -9,17 +9,36 @@ using System.Net.Sockets;
 public class Client : MonoBehaviour
 {
 
+    
+
+    //GameObject players 
+    Transform playerTransform;
+    public Transform Target;
+
+    void Start()
+        {
+        playerTransform = GameObject.Find("GamePiece").GetComponent(typeof(Transform)) as Transform;
+            //SpriteRenderer renderer = Player.AddComponent<SpriteRenderer>();
+            //renderer.sprite = player;
+       }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("space key is pressed");
+            RandomDiceRoll();
+        }
+    }
+    
     //The randome dice roll 
     public void RandomDiceRoll()
     {
-        int DiceRoll = 0;
-        DiceRoll = UnityEngine.Random.Range(1, 6);
-        Console.WriteLine();
-
+        int moveDistance = 0;
+        moveDistance = UnityEngine.Random.Range(1, 6);
+        //Line on te next line doesn't work.... fuck it!
+        playerTransform.transform.position.x += moveDistance;
     }
-
-    //GameObject players 
-    public GameObject enemy;
 
     //TCP Client 
     static void Connect(String server, string message)
@@ -67,12 +86,5 @@ public class Client : MonoBehaviour
 
     }
 
-    void start()
-    {
-        //Making multiple gameobjects, fill out so it is for each of the connected players 
-        for (int i = 0; i < 3; i++)
-        {
-            //instantiate(player);
-        }
-    }
+   
 }

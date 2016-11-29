@@ -1,12 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
 - path: Assets/Scenes/GameBoard.unity
-=======
-<<<<<<< HEAD
-- path: Assets/Scenes/Lobby.unity
-=======
-- path: Assets/Scenes/GameBoard.unity
->>>>>>> origin/master
->>>>>>> origin/master
   isLoaded: 1
   isActive: 1

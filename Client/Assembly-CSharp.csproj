@@ -45,8 +45,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\ButtonScript 1.cs" />
-     <Compile Include="Assets\Client.cs" />
+     <Compile Include="Assets\Scripts\ButtonScript1.cs" />
+     <Compile Include="Assets\Scripts\Client.cs" />
+     <Compile Include="Assets\Scripts\GamePiece.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

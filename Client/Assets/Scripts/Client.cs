@@ -12,6 +12,7 @@ public class Client : MonoBehaviour {
     {
         int DiceRoll = 0;
         DiceRoll = UnityEngine.Random.Range(1, 6);
+        Console.WriteLine();
 
     }
 

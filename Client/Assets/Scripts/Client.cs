@@ -8,19 +8,16 @@ using System.Net.Sockets;
 
 public class Client : MonoBehaviour
 {
-
-    
-
     //GameObject players 
-    Transform playerTransform;
-    public Transform Target;
+    public Sprite GameObject;
 
     void Start()
-        {
-        playerTransform = GameObject.Find("GamePiece").GetComponent(typeof(Transform)) as Transform;
-            //SpriteRenderer renderer = Player.AddComponent<SpriteRenderer>();
-            //renderer.sprite = player;
-       }
+     {
+        //playerTransform = GameObject.Find("GamePiece").GetComponent(typeof(Transform)) as transform;
+        GameObject player = new GameObject("GamePiece");
+        SpriteRenderer renderer = player.AddComponent<SpriteRenderer>();
+        renderer.sprite = GameObject;
+    }
 
     void Update()
     {
@@ -35,9 +32,8 @@ public class Client : MonoBehaviour
     public void RandomDiceRoll()
     {
         int moveDistance = 0;
-        moveDistance = UnityEngine.Random.Range(1, 6);
-        //Line on te next line doesn't work.... fuck it!
-        playerTransform.transform.position.x += moveDistance;
+        moveDistance = UnityEngine.Random.Range(1, 7);
+        //playerTransform.transform.position.x += moveDistance;
     }
 
     //TCP Client 
@@ -80,11 +76,4 @@ public class Client : MonoBehaviour
             throw;
         }
     }
-
-    private static void Main()
-    {
-
-    }
-
-   
 }

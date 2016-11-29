@@ -1,1 +1,2 @@
 c:\users\elisabeth\documents\visual studio 2015\Projects\Client_Code_Communication_With_Server\Client_Code_Communication_With_Server\bin\Debug\Client_Code_Communication_With_Server.exe.config
+C:\Users\carol\Documents\GitHub\gnomewars-client\Client_Code_Communication_With_Server\Client_Code_Communication_With_Server\bin\Debug\Client_Code_Communication_With_Server.exe.config

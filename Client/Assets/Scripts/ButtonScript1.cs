@@ -10,10 +10,15 @@ public class ButtonScript1 : MonoBehaviour {
 
 	} 
 
-	public void quitApp () {
+	public void QuitApp () {
 
 		Application.Quit (); 
 
-	}
+	} 
+	/*
+	public void Backtomenu () {
+		SceneManager.LoadScene ("Menu"); 
+
+	} */
 
 }

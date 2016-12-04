@@ -62,8 +62,6 @@ namespace PCSS_Mini_Project
             Random rnd = new Random();
 
 
-
-
             //Game is running until it exits loop
             while (isRunning)
             {
@@ -111,8 +109,61 @@ namespace PCSS_Mini_Project
                         }
                         //Check again for if not the current player and get response from server with the current player
                     }
-                }
-            }
+
+                    //If current player, you can interact with the console   
+                    if (playerReceive == playerTurn)
+                    {
+                        //New random value for dice roll
+                        eyes = rnd.Next(1, 6);
+                        activeOr = true;
+                        while (activeOr)
+                        {
+                            writer.WriteLine("");
+                            playerTurn = reader.ReadLine();
+                            Console.WriteLine("");
+                            Console.WriteLine(playerReceive + " it's your turn now!");
+                            Console.WriteLine("Press 'd' and then press enter to roll the dice");
+                            //if d is written in console, dice has been thrown
+                            if (Console.ReadLine() == "d")
+                            {
+                                playerPlacement += eyes;
+
+                                Console.WriteLine("You have moved " + eyes + " fields to field number " + playerPlacement);
+                                Console.WriteLine("");
+                                //Ladders with +3 values
+                                //Checks for snakes and ladders, for being sent back or forward
+                                if (playerPlacement == 42 || playerPlacement == 48)
+                                {
+                                    playerPlacement += 3;
+                                    Console.WriteLine("You found a ladder! You move 3 fields further! You new postion is" + playerPlacement);
+                                }
+
+
+                                //Ladders with +6 values
+                                if (playerPlacement == 2 || playerPlacement == 27)
+                                {
+                                    playerPlacement += 6;
+                                    Console.WriteLine("You found a ladder! You move 6 fields further! You new postion is " + playerPlacement);
+                                }
+
+
+                                //Snakes with -3 values
+                                if (playerPlacement == 11 || playerPlacement == 30)
+                                {
+                                    playerPlacement -= 3;
+                                    Console.WriteLine("You got attacked by a snake! You move 3 fields back! You new postion is " + playerPlacement);
+                                }
+
+
+                                //Snakes with -6 values
+                                if (playerPlacement == 6 || playerPlacement == 20)
+                                {
+                                    playerPlacement -= 6;
+                                    Console.WriteLine("You got attacked by a snake! You move 6 fields back! You new postion is " + playerPlacement);
+                                }
+
+                            }
+                        }
         }
     }
 }

@@ -42,7 +42,7 @@ namespace PCSS_Mini_Project
             }
 
             //Connects to the server
-            string playerReceive, playerTurn, tempString, placement;
+            string playerReceive, playerTurn, tempString;
             int eyes, playerPlacement = 0;
             TcpClient client;
             NetworkStream stream;
@@ -61,26 +61,26 @@ namespace PCSS_Mini_Project
 
             Random rnd = new Random();
 
-			//Initializing the lobby
-			while (stillActive == true)
-			{
-				writer.WriteLine("");
-				playerTurn = reader.ReadLine();
+            //Initializing the lobby
+            while (stillActive == true)
+            {
+                writer.WriteLine("");
+                playerTurn = reader.ReadLine();
 
-				//Reads player1 connects
-				if (playerTurn == "Player1")
-				{
-					Console.Clear();
-					Console.WriteLine("You have been assigned " + playerReceive);
-					Console.WriteLine("");
-					Console.WriteLine("Lobby:");
-					Console.WriteLine("Player1 is in the lobby");
-					while (playerTurn == "Player1")
-					{
-						writer.WriteLine("");
-						playerTurn = reader.ReadLine();
-					}
-				}
+                //Reads player1 connects
+                if (playerTurn == "Player1")
+                {
+                    Console.Clear();
+                    Console.WriteLine("You have been assigned " + playerReceive);
+                    Console.WriteLine("");
+                    Console.WriteLine("Lobby:");
+                    Console.WriteLine("Player1 is in the lobby");
+                    while (playerTurn == "Player1")
+                    {
+                        writer.WriteLine("");
+                        playerTurn = reader.ReadLine();
+                    }
+                }
 
                 //Player1 and player2 reads that player 2 has connected
                 if (playerTurn == "Player2")
@@ -127,6 +127,7 @@ namespace PCSS_Mini_Project
             {
                 writer.WriteLine("");
                 playerTurn = reader.ReadLine();
+
                 //Searching for winning statements
                 if (playerTurn == "Player1 Won")
                 {
@@ -168,109 +169,109 @@ namespace PCSS_Mini_Project
                             isRunning = false;
                         }
                         //Check again for if not the current player and get response from server with the current player
-                    }
-						if (tempString != playerTurn)
-						{
-							if (tempString == "Player1 Won")
-							{
-								Console.WriteLine(tempString);
-								isRunning = false;
-							}
-							if (tempString == "Player2 Won")
-							{
-								Console.WriteLine(tempString);
-								isRunning = false;
-							}
-							if (tempString == "Player3 Won")
-							{
-								Console.WriteLine(tempString);
-								isRunning = false;
-							}
-							Console.WriteLine(tempString + " has the turn this round");
-							writer.WriteLine("");
-							tempString = reader.ReadLine();
-							playerTurn = tempString;
-						}
-					}
-				}
-
-				//If current player, you can interact with the console   
-				if (playerReceive == playerTurn)
-                    {
-                        //New random value for dice roll
-                        eyes = rnd.Next(1, 6);
-                        activeOr = true;
-                        while (activeOr)
+                        if (tempString != playerTurn)
                         {
-                            writer.WriteLine("");
-                            playerTurn = reader.ReadLine();
-                            Console.WriteLine("");
-                            Console.WriteLine(playerReceive + " it's your turn now!");
-                            Console.WriteLine("Press 'd' and then press enter to roll the dice");
-                            //if d is written in console, dice has been thrown
-                            if (Console.ReadLine() == "d")
+                            if (tempString == "Player1 Won")
                             {
-                                playerPlacement += eyes;
+                                Console.WriteLine(tempString);
+                                isRunning = false;
+                            }
+                            if (tempString == "Player2 Won")
+                            {
+                                Console.WriteLine(tempString);
+                                isRunning = false;
+                            }
+                            if (tempString == "Player3 Won")
+                            {
+                                Console.WriteLine(tempString);
+                                isRunning = false;
+                            }
+                            Console.WriteLine(tempString + " has the turn this round");
+                            writer.WriteLine("");
+                            tempString = reader.ReadLine();
+                            playerTurn = tempString;
+                        }
+                    }
+                }
 
-                                Console.WriteLine("You have moved " + eyes + " fields to field number " + playerPlacement);
-                                Console.WriteLine("");
-                                //Ladders with +3 values
-                                //Checks for snakes and ladders, for being sent back or forward
-                                if (playerPlacement == 42 || playerPlacement == 48)
+                //If current player, you can interact with the console   
+                if (playerReceive == playerTurn)
+                {
+                    //New random value for dice roll
+                    eyes = rnd.Next(1, 6);
+                    activeOr = true;
+                    while (activeOr)
+                    {
+                        writer.WriteLine("");
+                        playerTurn = reader.ReadLine();
+                        Console.WriteLine("");
+                        Console.WriteLine(playerReceive + " it's your turn now!");
+                        Console.WriteLine("Press 'd' and then press enter to roll the dice");
+                        //if d is written in console, dice has been thrown
+                        if (Console.ReadLine() == "d")
+                        {
+                            playerPlacement += eyes;
+
+                            Console.WriteLine("You have moved " + eyes + " fields to field number " + playerPlacement);
+                            Console.WriteLine("");
+                            //Ladders with +3 values
+                            //Checks for snakes and ladders, for being sent back or forward
+                            if (playerPlacement == 42 || playerPlacement == 48)
+                            {
+                                playerPlacement += 3;
+                                Console.WriteLine("You found a ladder! You move 3 fields further! You new postion is" + playerPlacement);
+                            }
+
+
+                            //Ladders with +6 values
+                            if (playerPlacement == 2 || playerPlacement == 27)
+                            {
+                                playerPlacement += 6;
+                                Console.WriteLine("You found a ladder! You move 6 fields further! You new postion is " + playerPlacement);
+                            }
+
+
+                            //Snakes with -3 values
+                            if (playerPlacement == 11 || playerPlacement == 30)
+                            {
+                                playerPlacement -= 3;
+                                Console.WriteLine("You got attacked by a snake! You move 3 fields back! You new postion is " + playerPlacement);
+                            }
+
+
+                            //Snakes with -6 values
+                            if (playerPlacement == 6 || playerPlacement == 20)
+                            {
+                                playerPlacement -= 6;
+                                Console.WriteLine("You got attacked by a snake! You move 6 fields back! You new postion is " + playerPlacement);
+
+                                //If a certain placement has been reached a winning statement is sent to the server
+                                if (playerPlacement >= 50)
                                 {
-                                    playerPlacement += 3;
-                                    Console.WriteLine("You found a ladder! You move 3 fields further! You new postion is" + playerPlacement);
-                                }
-
-
-                                //Ladders with +6 values
-                                if (playerPlacement == 2 || playerPlacement == 27)
-                                {
-                                    playerPlacement += 6;
-                                    Console.WriteLine("You found a ladder! You move 6 fields further! You new postion is " + playerPlacement);
-                                }
-
-
-                                //Snakes with -3 values
-                                if (playerPlacement == 11 || playerPlacement == 30)
-                                {
-                                    playerPlacement -= 3;
-                                    Console.WriteLine("You got attacked by a snake! You move 3 fields back! You new postion is " + playerPlacement);
-                                }
-
-
-                                //Snakes with -6 values
-                                if (playerPlacement == 6 || playerPlacement == 20)
-                                {
-                                    playerPlacement -= 6;
-                                    Console.WriteLine("You got attacked by a snake! You move 6 fields back! You new postion is " + playerPlacement);
-
-                                    //If a certain placement has been reached a winning statement is sent to the server
-                                    if (playerPlacement >= 50)
+                                    if (playerReceive == "Player1")
                                     {
-                                        if (playerReceive == "Player1")
-                                        {
-                                            writer.WriteLine("Player1 Won");
-                                        }
-                                        if (playerReceive == "Player2")
-                                        {
-                                            writer.WriteLine("Player2 Won");
-                                        }
-                                        if (playerReceive == "Player3")
-                                        {
-                                            writer.WriteLine("Player3 Won");
-                                        }
-                                        activeOr = false;
+                                        writer.WriteLine("Player1 Won");
                                     }
-                                    //Writes name to server to give turn to new player
-                                    writer.WriteLine(playerReceive);
-                                    playerTurn = reader.ReadLine();
+                                    if (playerReceive == "Player2")
+                                    {
+                                        writer.WriteLine("Player2 Won");
+                                    }
+                                    if (playerReceive == "Player3")
+                                    {
+                                        writer.WriteLine("Player3 Won");
+                                    }
                                     activeOr = false;
                                 }
+                                //Writes name to server to give turn to new player
+                                writer.WriteLine(playerReceive);
+                                playerTurn = reader.ReadLine();
+                                activeOr = false;
                             }
                         }
                     }
-                    Console.ReadLine();
                 }
+                Console.ReadLine();
             }
         }
+    }
+}

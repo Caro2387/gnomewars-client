@@ -61,9 +61,30 @@ namespace PCSS_Mini_Project
 
             Random rnd = new Random();
 
+			//Initializing the lobby
+			while (stillActive == true)
+			{
+				writer.WriteLine("");
+				playerTurn = reader.ReadLine();
+				//Reads player1 connects
+				if (playerTurn == "Player1")
+				{
+					Console.Clear();
+					Console.WriteLine("You have been assigned " + playerReceive);
+					Console.WriteLine("");
+					Console.WriteLine("Lobby:");
+					Console.WriteLine("Player1 is in the lobby");
+					while (playerTurn == "Player1")
+					{
+						writer.WriteLine("");
+						playerTurn = reader.ReadLine();
+					}
+				}
 
-            //Game is running until it exits loop
-            while (isRunning)
+
+
+				//Game is running until it exits loop
+				while (isRunning)
             {
                 writer.WriteLine("");
                 playerTurn = reader.ReadLine();

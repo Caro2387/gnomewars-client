@@ -244,34 +244,33 @@ namespace PCSS_Mini_Project
                             {
                                 playerPlacement -= 6;
                                 Console.WriteLine("You got attacked by a snake! You move 6 fields back! You new postion is " + playerPlacement);
-
-                                //If a certain placement has been reached a winning statement is sent to the server
-                                if (playerPlacement >= 50)
+                            }
+                            //If a certain placement has been reached a winning statement is sent to the server
+                            if (playerPlacement >= 50)
+                            {
+                                if (playerReceive == "Player1")
                                 {
-                                    if (playerReceive == "Player1")
-                                    {
-                                        writer.WriteLine("Player1 Won");
-                                    }
-                                    if (playerReceive == "Player2")
-                                    {
-                                        writer.WriteLine("Player2 Won");
-                                    }
-                                    if (playerReceive == "Player3")
-                                    {
-                                        writer.WriteLine("Player3 Won");
-                                    }
-                                    activeOr = false;
+                                    writer.WriteLine("Player1 Won");
                                 }
-                                //Writes name to server to give turn to new player
-                                writer.WriteLine(playerReceive);
-                                playerTurn = reader.ReadLine();
+                                if (playerReceive == "Player2")
+                                {
+                                    writer.WriteLine("Player2 Won");
+                                }
+                                if (playerReceive == "Player3")
+                                {
+                                    writer.WriteLine("Player3 Won");
+                                }
                                 activeOr = false;
                             }
-                        }
+                            //Writes name to server to give turn to new player
+                            writer.WriteLine(playerReceive);
+                            playerTurn = reader.ReadLine();
+                            activeOr = false;
+                        }                      
                     }
                 }
-                Console.ReadLine();
             }
+            Console.ReadLine();
         }
     }
 }

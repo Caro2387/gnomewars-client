@@ -130,9 +130,33 @@ namespace PCSS_Mini_Project
                         }
                         //Check again for if not the current player and get response from server with the current player
                     }
+						if (tempString != playerTurn)
+						{
+							if (tempString == "Player1 Won")
+							{
+								Console.WriteLine(tempString);
+								isRunning = false;
+							}
+							if (tempString == "Player2 Won")
+							{
+								Console.WriteLine(tempString);
+								isRunning = false;
+							}
+							if (tempString == "Player3 Won")
+							{
+								Console.WriteLine(tempString);
+								isRunning = false;
+							}
+							Console.WriteLine(tempString + " has the turn this round");
+							writer.WriteLine("");
+							tempString = reader.ReadLine();
+							playerTurn = tempString;
+						}
+					}
+				}
 
-                    //If current player, you can interact with the console   
-                    if (playerReceive == playerTurn)
+				//If current player, you can interact with the console   
+				if (playerReceive == playerTurn)
                     {
                         //New random value for dice roll
                         eyes = rnd.Next(1, 6);

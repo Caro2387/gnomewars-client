@@ -40,7 +40,26 @@ namespace PCSS_Mini_Project
 					break;
 				}
 			}
-		//Insert Here!!! 
+
+            //Connects to the server
+            string playerReceive, playerTurn, tempString, placement;
+            int eyes, playerPlacement = 0;
+            TcpClient client;
+            NetworkStream stream;
+            StreamReader reader;
+            StreamWriter writer;
+
+
+            int port = 1615;
+            client = new TcpClient("localhost", port);
+            stream = client.GetStream();
+            reader = new StreamReader(stream);
+            writer = new StreamWriter(stream) { AutoFlush = true };
+            playerReceive = reader.ReadLine();
+            playerTurn = playerReceive;
+
+
+            Random rnd = new Random();
 
         }
     }

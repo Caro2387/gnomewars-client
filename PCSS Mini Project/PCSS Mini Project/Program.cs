@@ -66,6 +66,7 @@ namespace PCSS_Mini_Project
 			{
 				writer.WriteLine("");
 				playerTurn = reader.ReadLine();
+
 				//Reads player1 connects
 				if (playerTurn == "Player1")
 				{
@@ -81,10 +82,48 @@ namespace PCSS_Mini_Project
 					}
 				}
 
+                //Player1 and player2 reads that player 2 has connected
+                if (playerTurn == "Player2")
+                {
+                    Console.Clear();
+                    Console.WriteLine("You have been assigned " + playerReceive);
+                    Console.WriteLine("");
+                    Console.WriteLine("Lobby:");
+                    Console.WriteLine("Player1 is in the lobby");
+                    Console.WriteLine("Player2 is in the lobby");
+                    while (playerTurn == "Player2")
+                    {
+                        writer.WriteLine("");
+                        playerTurn = reader.ReadLine();
+                    }
+                }
 
+                //Player1, player2 and player3 reads that player3 has been connected 
+                if (playerTurn == "Player3")
+                {
+                    Console.Clear();
+                    Console.WriteLine("You have been assigned " + playerReceive);
+                    Console.WriteLine("");
+                    Console.WriteLine("Lobby:");
+                    Console.WriteLine("Player1 is in the lobby");
+                    Console.WriteLine("Player2 is in the lobby");
+                    Console.WriteLine("Player3 is in the lobby");
+                    while (playerTurn == "Player3")
+                    {
+                        writer.WriteLine("");
+                        playerTurn = reader.ReadLine();
+                    }
 
-				//Game is running until it exits loop
-				while (isRunning)
+                }
+                stillActive = false;
+            }
+            startActive = true;
+            Console.WriteLine("");
+            Console.WriteLine("Starting Game!");
+            Console.WriteLine("");
+
+            //Game is running until it exits loop
+            while (isRunning)
             {
                 writer.WriteLine("");
                 playerTurn = reader.ReadLine();
